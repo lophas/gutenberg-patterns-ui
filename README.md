@@ -1,8 +1,7 @@
 Wordpress Gutenberg Patterns UI
+Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
 Version: 1.0 
 Author: Attila Seres
-
-Enhanced admin UI for Gutenberg Patterns (reusable blocks)
 
 Features:
 - adds Patterns dashboard menu item
