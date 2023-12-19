@@ -1,4 +1,4 @@
-Gutenberg Patterns UI
+Wordpress Gutenberg Patterns UI
 Version: 1.0 
 Author: Attila Seres
 
