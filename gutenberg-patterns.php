@@ -1,11 +1,11 @@
 <?php
 /*
-	Plugin Name: Gutenberg patterns UI
-	Description:
-	Version:  1.0
-	Plugin URI:
-	Author: Attila Seres
-	Author URI:
+Plugin Name: Gutenberg patterns admin UI
+Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
+Version:  1.0
+Plugin URI:
+Author: Attila Seres
+Author URI: https://github.com/lophas
 */
 if(!class_exists('gutenberg_patterns')) :
 class gutenberg_patterns {
