@@ -5,7 +5,7 @@ Author: Attila Seres
 Enhanced admin UI for Gutenberg Patterns (reusable blocks)
 
 Features:
-- adds dashboard menu item
+- adds Patterns dashboard menu item
 - adds Sync column on list view
 - adds Synced/Unsynced checkbox on pattern editor panel
 
