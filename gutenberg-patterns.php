@@ -3,7 +3,7 @@
 Plugin Name: Gutenberg Patterns Admin UI
 Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
 Version:  1.0
-Plugin URI:
+Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
 Author: Attila Seres
 Author URI: https://github.com/lophas
 */
