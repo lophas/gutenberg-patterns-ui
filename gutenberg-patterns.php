@@ -11,11 +11,11 @@
 */
 if(!class_exists('gutenberg_patterns')) :
 class gutenberg_patterns {
-	private $settings;
+    private $settings;
     const META_KEY = 'wp_pattern_sync_status';
     const POST_TYPE = 'wp_block';
-	const COLUMN_NAME = 'sync-status';
-	function __construct() {
+    const COLUMN_NAME = 'sync-status';
+    function __construct() {
         add_action('init', [$this, 'init']);
         add_action( 'registered_post_type_'.self::POST_TYPE, [$this, 'registered_post_type'], 10, 2 );
     }
@@ -71,17 +71,17 @@ class gutenberg_patterns {
         <?php
     }
     function save_post($post_id, $post, $update) {
-      if ( ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) || !isset($_REQUEST)) return;
-	  if(!in_array($_REQUEST['action'], ['editpost','inline-save'])) return;
-          if(!$_REQUEST[self::META_KEY]) update_post_meta($post_id, self::META_KEY, 'unsynced');
-          else delete_post_meta($post_id, self::META_KEY);
+	if ( ( defined('DOING_AUTOSAVE') && DOING_AUTOSAVE ) || !isset($_REQUEST)) return;
+	if(!in_array($_REQUEST['action'], ['editpost','inline-save'])) return;
+	if(!$_REQUEST[self::META_KEY]) update_post_meta($post_id, self::META_KEY, 'unsynced');
+	else delete_post_meta($post_id, self::META_KEY);
     }
-	function admin_head() {
-		?><style>
-			.post-type-<?php echo self::POST_TYPE ?> .column-<?php echo self::COLUMN_NAME ?> {width:50px}
-			.post-type-<?php echo self::POST_TYPE ?> .edit-post-sync-status {display:none}
-		</style><?php
-	}
+    function admin_head() {
+	?><style>
+		.post-type-<?php echo self::POST_TYPE ?> .column-<?php echo self::COLUMN_NAME ?> {width:50px}
+		.post-type-<?php echo self::POST_TYPE ?> .edit-post-sync-status {display:none}
+	</style><?php
+    }
 }
 new gutenberg_patterns;
 endif;
