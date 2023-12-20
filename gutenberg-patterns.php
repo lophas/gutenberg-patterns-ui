@@ -11,7 +11,6 @@
 */
 if(!class_exists('gutenberg_patterns')) :
 class gutenberg_patterns {
-    private $settings;
     const META_KEY = 'wp_pattern_sync_status';
     const POST_TYPE = 'wp_block';
     const COLUMN_NAME = 'sync-status';
