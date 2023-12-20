@@ -37,13 +37,13 @@ class gutenberg_patterns {
         add_action('manage_'.self::POST_TYPE.'_posts_custom_column', [$this, 'column_data'], 10, 2);
         add_filter( 'classic_editor_enabled_editors_for_post_type', [$this, 'disable_classic_editor'], 10, 2);//just in case
     }
-    function disable_classic_editor($editors, $post_type ) {
+    function disable_classic_editor($editors, $post_type ) { //just in case if classic editor is enabled
         if(in_array($post_type, [self::POST_TYPE])) {
             unset($editors['classic_editor']);
         }
         return $editors;
     }
-	function column_name($columns){
+    function column_name($columns){
         $columns[self::COLUMN_NAME] = __('Sync');
         return $columns;
     }
