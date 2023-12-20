@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * GitHub Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
- * Version: 1.3
+ * Version: 1.4
  * Author: Attila Seres
  * Author URI:  https://github.com/lophas
  * License: GPLv3
@@ -19,7 +19,7 @@ class gutenberg_patterns {
     public function __construct() {
         add_action( 'init', [$this, 'init']);
         add_action( 'registered_post_type_'.self::POST_TYPE, [$this, 'registered_post_type'], 10, 2 );
-        $this->ajax_action = self::METABOX_ID.'_update';
+        $this->ajax_action = str_replace('-', '_', self::METABOX_ID).'_update';
         add_action( 'wp_ajax_'.$this->ajax_action, [$this,'do_ajax']);
     }
     public function registered_post_type( $post_type, $post_type_object ) {
