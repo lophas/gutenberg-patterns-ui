@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * GitHub Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
- * Version: 1.4
+ * Version: 1.5
  * Author: Attila Seres
  * Author URI:  https://github.com/lophas
  * License: GPLv3
@@ -23,13 +23,14 @@ class gutenberg_patterns {
         add_action( 'wp_ajax_'.$this->ajax_action, [$this,'do_ajax']);
     }
     public function registered_post_type( $post_type, $post_type_object ) {
-        global $wp_post_types;
+        global $wp_post_types, $_wp_post_type_features;
         $wp_post_types[$post_type]->_builtin = false;
         $wp_post_types[$post_type]->show_ui = true;
         $wp_post_types[$post_type]->show_in_menu = true;
         $wp_post_types[$post_type]->show_in_admin_bar = true;
         $wp_post_types[$post_type]->menu_icon = 'dashicons-block-default';
         $wp_post_types[$post_type]->menu_position = 20;
+        $_wp_post_type_features[$post_type]['author'] = true;
     }
     public function init (){
         if(!is_admin()) return;
