@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * GitHub Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
- * Version: 1.5
+ * Version: 1.6
  * Author: Attila Seres
  * Author URI:  https://github.com/lophas
  * License: GPLv3
@@ -23,30 +23,29 @@ class gutenberg_patterns {
         add_action( 'wp_ajax_'.$this->ajax_action, [$this,'do_ajax']);
     }
     public function registered_post_type( $post_type, $post_type_object ) {
-        global $wp_post_types, $_wp_post_type_features;
+/*
+        //enable main menu item
+        global $wp_post_types;
         $wp_post_types[$post_type]->_builtin = false;
         $wp_post_types[$post_type]->show_ui = true;
         $wp_post_types[$post_type]->show_in_menu = true;
         $wp_post_types[$post_type]->show_in_admin_bar = true;
         $wp_post_types[$post_type]->menu_icon = 'dashicons-block-default';
         $wp_post_types[$post_type]->menu_position = 20;
-        $_wp_post_type_features[$post_type]['author'] = true;
+*/
+        add_post_type_support($post_type, 'author');
     }
     public function init (){
         if(!is_admin()) return;
+        add_action( 'admin_menu', [$this, 'admin_menu'], 9); //add submenu item instead of main menu
         add_action( 'add_meta_boxes_'.self::POST_TYPE, [$this, 'add_meta_boxes'],1 );
         add_action( 'save_post_'.self::POST_TYPE, [$this, 'save_post'], 20, 3);
-
         add_action( 'admin_head', [$this, 'admin_head']);
         add_filter( 'manage_'.self::POST_TYPE.'_posts_columns', [$this, 'column_name'], 10);
         add_action( 'manage_'.self::POST_TYPE.'_posts_custom_column', [$this, 'column_data'], 10, 2);
-        add_filter( 'classic_editor_enabled_editors_for_post_type', [$this, 'disable_classic_editor'], 10, 2);//just in case
     }
-    public function disable_classic_editor($editors, $post_type ) { //just in case if classic editor is enabled
-        if(in_array($post_type, [self::POST_TYPE])) {
-            unset($editors['classic_editor']);
-        }
-        return $editors;
+    public function admin_menu(){
+        add_submenu_page( 'themes.php', __('Patterns'),  __('Patterns'), 'edit_theme_options', 'edit.php?post_type=wp_block', null, null );
     }
     private function is_synced($post_id) {
 	return get_post_meta( $post_id, self::META_KEY, true ) !== 'unsynced';
