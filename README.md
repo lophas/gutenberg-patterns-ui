@@ -7,6 +7,7 @@ Author: Attila Seres
 Features:
 - adds Patterns dashboard menu item
 - adds Sync column on list view
+- adds quickedit functionality
 - adds Synced/Unsynced checkbox on pattern editor panel
 
  
