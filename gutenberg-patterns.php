@@ -4,7 +4,7 @@
  * Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * GitHub Plugin URI: https://github.com/lophas/gutenberg-patterns-ui
  * Description: Enhanced admin UI for Gutenberg Patterns (reusable blocks)
- * Version: 2.0
+ * Version: 2.1
  * Author: Attila Seres
  * Author URI:  https://github.com/lophas
  * License: GPLv3
@@ -57,9 +57,10 @@ class gutenberg_patterns {
     }
     public function admin_head() {
 	    ?><style>
-		.post-type-<?php echo self::POST_TYPE ?> .column-<?php echo self::COLUMN_NAME ?> {width:50px}
-		.post-type-<?php echo self::POST_TYPE ?> .edit-post-sync-status {display:none}
-            	.post-type-<?php echo self::POST_TYPE ?> .inline-edit-author + .inline-edit-group {display:none}
+		    .post-type-<?php echo self::POST_TYPE ?> .column-<?php echo self::COLUMN_NAME ?> {width:50px}
+		    .post-type-<?php echo self::POST_TYPE ?> .edit-post-sync-status {display:none}
+/*            .post-type-<?php echo self::POST_TYPE ?> .inline-edit-author {display:inherit!important} */
+            .post-type-<?php echo self::POST_TYPE ?> .inline-edit-author + .inline-edit-group {display:none}
 	    </style><?php
     }
     public function save_post($post_id, $post, $update) {
@@ -91,9 +92,11 @@ class gutenberg_patterns {
         return $actions;
     }
     public function inline_data($post, $post_type_object ) {
+        if($post->post_type !== self::POST_TYPE) return;
         echo '<div class="meta-'.self::META_KEY.'">' . ($this->is_synced($post->ID) ? 1 : 0) . '</div>';
     }
     public function quick_edit_custom_box_fields($post_type) {
+        if($post_type !== self::POST_TYPE) return;
         $output = '';
         ?><label class="inline-edit-meta-<?php echo self::META_KEY ?>">
         <span class="meta-<?php echo self::META_KEY ?>"><?php echo __('Sync status') ?></span>
